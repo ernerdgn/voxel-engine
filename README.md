@@ -105,15 +105,11 @@ Given a ray origin $\vec{O}$ and direction $\vec{D}$:
 
 2.  **Delta Distance ($\Delta dist$)**: The distance the ray travels to cover exactly 1 unit on a specific axis.
 
-    $$
-    \Delta dist_x = \sqrt{1 + \frac{D_y^2}{D_x^2} + \frac{D_z^2}{D_x^2}} = \left| \frac{1}{D_x} \right|
-    $$
+    $ \Delta dist_x = \sqrt{1 + \frac{D_y^2}{D_x^2} + \frac{D_z^2}{D_x^2}} = \left| \frac{1}{D_x} \right| $
 
 3.  **Side Distance ($sideDist$)**: The distance from the origin to the *first* boundary.
 
-    $$
-    sideDist_x = (map_x + 1.0 - O_x) \times \Delta dist_x
-    $$
+    $ sideDist_x = (map_x + 1.0 - O_x) \times \Delta dist_x $
 
 4.  **The Loop**:
     Comparing $sideDist_x$, $sideDist_y$, and $sideDist_z$.
