@@ -43,6 +43,16 @@ add_executable(${PROJECT_NAME}
     src/Shader.h
     src/Camera.h
     src/stb_impl.cpp
+    src/VoxelWorld.h
+    src/VoxelWorld.cpp
+    src/Physics.h
+    src/Physics.cpp
+    src/InputSystem.h
+    src/InputSystem.cpp
+    src/OutlineRenderer.h
+    src/OutlineRenderer.cpp
+    src/Texture.h
+    src/Texture.cpp
 )
 target_include_directories(${PROJECT_NAME} PRIVATE ${stb_SOURCE_DIR})
 

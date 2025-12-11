@@ -32,6 +32,9 @@ public:
     float mouse_sensitivity;
     float zoom;
 
+    // modes
+    bool flying_mode = true;
+
     // Constructor with vectors
     Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = YAW, float pitch = PITCH) 
         : Front(glm::vec3(0.0f, 0.0f, -1.0f)), movement_speed(SPEED), mouse_sensitivity(SENSITIVITY), zoom(ZOOM) 
@@ -53,18 +56,33 @@ public:
     void ProcessKeyboard(int direction, float delta_time)
     {
         float velocity = movement_speed * delta_time;
-        if (direction == 0) // FORWARD
-            Position += Front * velocity;
-        if (direction == 1) // BACKWARD
-            Position -= Front * velocity;
-        if (direction == 2) // LEFT
-            Position -= Right * velocity;
-        if (direction == 3) // RIGHT
-            Position += Right * velocity;
-        if (direction == 4) // UP (Space)
-            Position += WorldUp * velocity;
-        if (direction == 5) // DOWN (Ctrl)
-            Position -= WorldUp * velocity;
+
+        if (flying_mode) // flying mode
+        {
+            if (direction == 0) // FORWARD
+                Position += Front * velocity;
+            if (direction == 1) // BACKWARD
+                Position -= Front * velocity;
+            if (direction == 2) // LEFT
+                Position -= Right * velocity;
+            if (direction == 3) // RIGHT
+                Position += Right * velocity;
+            if (direction == 4) // UP (Space)
+                Position += WorldUp * velocity;
+            if (direction == 5) // DOWN (Ctrl)
+                Position -= WorldUp * velocity;
+        }
+
+        // else // walking mode
+        // {
+        //     // flatten fron vector to prevent flying
+        //     glm::vec3 flatFront = glm::normalize(glm::vec3(Front.x, 0.0f, Front.z));
+            
+        //     if (direction == 0) Position += flatFront * velocity; // W
+        //     if (direction == 1) Position -= flatFront * velocity; // S
+        //     if (direction == 2) Position -= Right * velocity; // A
+        //     if (direction == 3) Position += Right * velocity; // D
+        // }
     }
 
     // input process from mouse
